@@ -1,10 +1,7 @@
 import { View, Text, Pressable, StyleSheet, ImageBackgroundComponent } from 'react-native';
+import Colors from '../../constants/colors';
 
-function PrimaryButton({ children}) {
-
-    function pressHandler() {
-        console.log('Pressed!');
-    }
+function PrimaryButton({ children, onPress }) {
 
     // styleを確実に効かせるためにも、必ずViewで囲んだ方がいい
     return (
@@ -18,8 +15,8 @@ function PrimaryButton({ children}) {
                     pressed 
                         ? [styles.buttonInnerContainer, styles.pressed] 
                         : styles.buttonInnerContainer} 
-                onPress={pressHandler}
-                android_ripple={{ color: '#e9dfe4ff' }} // for-android
+                onPress={onPress}
+                android_ripple={{ color: Colors.primary_ripple }} // for-android
             >
                 <Text style={styles.buttonText}>
                     {children}
@@ -38,7 +35,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     buttonInnerContainer: {
-        backgroundColor: '#ca136eff',
+        backgroundColor: Colors.primary500,
         paddingVertical: 8,     // 上下にのみ同じpaddingを取りたい
         paddingHorizontal: 16,  // 左右にのみ同じpaddingを取りたい
         elevation: 2,           // for-android
